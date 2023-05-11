@@ -1,6 +1,6 @@
 import { Button as ButtonNB, Text } from "native-base";
 
-const Button = ({ ...rest }) => {
+const Button = ({ text ,...rest }) => {
   return (
     <ButtonNB
       w={"full"}
@@ -10,7 +10,7 @@ const Button = ({ ...rest }) => {
       {...rest}
     >
       <Text color={"white"} fontSize={"md"} fontWeight={"bold"}>
-        Entrar
+        {text}
       </Text>
     </ButtonNB>
   );
