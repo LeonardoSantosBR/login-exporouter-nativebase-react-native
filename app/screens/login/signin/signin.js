@@ -1,4 +1,3 @@
-import { Controller, useForm } from "react-hook-form";
 import {
   NativeBaseProvider,
   Box,
@@ -9,23 +8,32 @@ import {
 } from "native-base";
 
 import { useRouter } from "expo-router";
-
 import { Input } from "../../../components/login/inputs/input";
 import { Button } from "../../../components/login/buttons/button";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { SignInSchema } from "../../schemas/login/signin";
+
 
 function SigninScreen() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: yupResolver(SignInSchema),
+  });
+
+  const router = useRouter();
 
   function handleSignIn(data) {
     console.log(data);
   }
 
-  const router = useRouter();
-  
   return (
     <NativeBaseProvider>
       <VStack flex={1} bgColor={"white.500"} px={8}>

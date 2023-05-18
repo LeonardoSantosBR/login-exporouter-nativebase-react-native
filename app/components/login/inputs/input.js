@@ -1,13 +1,14 @@
-import { Input as InputNB, FormControl } from "native-base";
+import { Input as InputNB, FormControl, Text } from "native-base";
 
 const Input = ({ errorMessage = null, isInvalid, ...rest }) => {
   let error = !!errorMessage || isInvalid;
+
   return (
-    <FormControl>
+    <>
       <InputNB
         bg={"gray.200"}
         fontSize={"lg"}
-        mb={8}
+        isInvalid={error}
         color={"black"}
         h={16}
         _focus={{
@@ -17,8 +18,10 @@ const Input = ({ errorMessage = null, isInvalid, ...rest }) => {
         }}
         {...rest}
       />
-      <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
-    </FormControl>
+      <Text mb={5} pl={2} color={"red.500"}>
+        {errorMessage}
+      </Text>
+    </>
   );
 };
 

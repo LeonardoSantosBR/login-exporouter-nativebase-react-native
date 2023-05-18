@@ -11,13 +11,17 @@ import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "../../../components/login/buttons/button";
 import { Input } from "../../../components/login/inputs/input";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { SignUpSchema } from "../../schemas/login/signup";
 
 const SignupScreen = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(SignUpSchema)
+  });
 
   const router = useRouter();
 
@@ -66,7 +70,7 @@ const SignupScreen = () => {
               placeholder="confirmar Senha"
               onChangeText={onChange}
               type={"password"}
-              errorMessage={errors.confirmarSenha?.message}
+              errorMessage={errors.confirmPassword?.message}
             />
           )}
         />
